@@ -32,9 +32,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
+extern void *__cxa_allocate_exception(size_t thrown_size);
+extern void __cxa_throw (void *thrown_exception, void* *tinfo, void (*dest) (void *) );
+extern void * _ZTIl; // typeinfo of long
 
-#define g_assert(expr)			do { if (! (expr)) throw std::runtime_error("expr") } while (0)
-#define g_assert_not_reached()	throw std::runtime_error("should not be reached")
+#define g_assert(expr)			do { if (! (expr)) {   int64_t * p = (int64_t*)__cxa_allocate_exception(8);   *p = 1976;   __cxa_throw(p,&_ZTIl,0);} } while (0)
+  //#define g_assert_not_reached()	throw std::runtime_error("should not be reached")
 
 
 /* Added based on glib.h by M J Loehr 01/01/01 */

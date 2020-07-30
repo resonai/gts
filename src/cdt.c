@@ -884,7 +884,7 @@ remove_intersected_edge (GtsSegment * s,
 			      GTS_POINT (s->v2));
 
   if (o1 == 0.) {
-    if(o2 != 0) {throw std::runtime_error("o2 != 0 ")}
+    g_assert (o2 == 0);
     remove_triangles (e, surface);
     if (!constraint && !e->triangles)
       gts_object_destroy (GTS_OBJECT (e));
