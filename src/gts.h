@@ -44,11 +44,9 @@ extern void * _ZTIl; // typeinfo of long
     } \
   } while (0)
 #define g_assert_not_reached() do { \
-    if (! (expr)) { \
-      int64_t * p = (int64_t*)__cxa_allocate_exception(8); \
-      *p = __LINE__; \
-      __cxa_throw(p, &_ZTIl, 0); \
-    } \
+    int64_t * p = (int64_t*)__cxa_allocate_exception(8);  \
+    *p = __LINE__;                                        \
+    __cxa_throw(p, &_ZTIl, 0);                            \
   } while (0)
 
 
